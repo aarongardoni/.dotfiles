@@ -28,6 +28,7 @@ autoload -U compinit && compinit
 # --- aliases
 alias vim="nvim"
 alias ls="ls --color"
+alias zaws=$HOME/code/digizoo/ark-infra/zaws/bin/zaws
 
 # --- zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -49,4 +50,26 @@ setopt hist_find_no_dups
 
 # --- Fzf
 eval "$(fzf --zsh)"
+
+# --- tf/tf switch
+load-tgswitch() {
+  local tgswitchrc_path=".tgswitchrc"
+
+  if [ -f "$tgswitchrc_path" ]; then
+    tgswitch
+  fi
+}
+add-zsh-hook chpwd load-tgswitch
+load-tgswitch
+
+# --- nvm ---
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# -- rust ---
+. "$HOME/.cargo/env"
+
+# Source secrets
+[ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
 
