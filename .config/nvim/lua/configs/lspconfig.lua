@@ -13,10 +13,16 @@ local servers = {
   lua_ls = {
     settings = {
       Lua = {
+        version = "LuaJIT",
+        diagnostics = {
+          globals = { "love", "jit" },
+        },
         workspace = {
-          -- Path to your Addons directory
-          userThirdParty = { os.getenv("HOME") .. ".local/share/LuaAddons" },
-          checkThirdParty = "Apply"
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            '/Applications/love.app/Contents/Resources/',
+          },
         }
       }
     }
