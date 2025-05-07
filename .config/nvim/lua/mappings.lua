@@ -19,6 +19,10 @@ map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "window up" })
 -- leaderff to search files in git
 map("n", "<leader>ff", "<cmd>Telescope git_files<CR>", { desc = "Find files in git" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Find git branches" })
+map("n", "<leader>fs", function()
+  require("telescope.builtin").live_grep({ additional_args = { "--hidden" } })
+end, { desc = "telescope live grep hidden files" })
+
 
 -- copilot
 map("i", "<leader>cc",
